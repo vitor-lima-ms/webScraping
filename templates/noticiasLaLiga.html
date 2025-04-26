@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Notícias - LALIGA{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'noticias.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <div class="container">
+        <h1>Notícias - LALIGA</h1>
+        <table class="table table-striped">
+            <tbody>
+                {% for notice in obj_list %}
+                    <tr>
+                        <td><a href="{{ notice.href }}" target="_blank"><b>{{ notice.title }}</b></a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="{{ notice.img }}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Série A - Brasil{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tabelas.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <div class="container">
+        <h1>Tabela do Brasileirão - Série A</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pos.</th>
+                    <th>Time</th>
+                    <th>Pontos</th>
+                    <th>Jogos</th>
+                    <th>Vitórias</th>
+                    <th>Empates</th>
+                    <th>Derrotas</th>
+                    <th>Gols-pró</th>
+                    <th>Gols-contra</th>
+                    <th>Saldo de gols</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in obj_list %}
+                    {% if team.pos <= 4 %}
+                        <tr class="table-success">
+                            <td><b>{{ team.pos }}</b></td>
+                            <td>{{ team.name }}</td>
+                            <td>{{ team.points }}</td>
+                            <td>{{ team.games }}</td>
+                            <td>{{ team.wins }}</td>
+                            <td>{{ team.draws }}</td>
+                            <td>{{ team.losses }}</td>
+                            <td>{{ team.goals_for }}</td>
+                            <td>{{ team.goals_against }}</td>
+                            <td>{{ team.goal_difference }}</td>
+                        </tr>
+                    {% elif team.pos >= 17 %}
+                        <tr class="table-danger">
+                            <td><b>{{ team.pos }}</b></td>
+                            <td>{{ team.name }}</td>
+                            <td>{{ team.points }}</td>
+                            <td>{{ team.games }}</td>
+                            <td>{{ team.wins }}</td>
+                            <td>{{ team.draws }}</td>
+                            <td>{{ team.losses }}</td>
+                            <td>{{ team.goals_for }}</td>
+                            <td>{{ team.goals_against }}</td>
+                            <td>{{ team.goal_difference }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ team.pos }}</td>
+                            <td>{{ team.name }}</td>
+                            <td>{{ team.points }}</td>
+                            <td>{{ team.games }}</td>
+                            <td>{{ team.wins }}</td>
+                            <td>{{ team.draws }}</td>
+                            <td>{{ team.losses }}</td>
+                            <td>{{ team.goals_for }}</td>
+                            <td>{{ team.goals_against }}</td>
+                            <td>{{ team.goal_difference }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+        </table>
+    </div>
+{% endblock content %}
